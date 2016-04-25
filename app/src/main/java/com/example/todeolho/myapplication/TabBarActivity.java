@@ -45,6 +45,7 @@ public class TabBarActivity extends TabActivity implements TabHost.OnTabChangeLi
         tabHost.getTabWidget().getChildAt(1).setBackgroundResource(R.drawable.heart);
 
 
+
         // Set Tab1 as Default tab and change image
         tabHost.getTabWidget().setCurrentTab(0);
         tabHost.getTabWidget().getChildAt(0).setBackgroundResource(R.drawable.heart);

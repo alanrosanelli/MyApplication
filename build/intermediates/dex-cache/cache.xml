@@ -2,32 +2,60 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.0\jars\classes.jar"
+        jar="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.3.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
-        <dex dex="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.0.0_2f8173996ba79a2af464958e863088f245e465cc.jar" />
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.3.0_f07960160db7344484d254f1d192d9f2faea41a1.jar" />
     </item>
     <item
-        jar="C:\Users\Alan\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.0\support-annotations-23.0.0.jar"
+        jar="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
-        <dex dex="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.0_67c2807f5830e2ca08cd718e0e7bca09c8965a10.jar" />
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.3.0_2096543cdb7eba1bdd5cc2dd6c326c27d819b048.jar" />
     </item>
     <item
-        jar="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\classes.jar"
+        jar="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
-        <dex dex="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.0.0_effe4c04c5418f1d0740aa4a3a43e9c8d9a25815.jar" />
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.3.0_6f3c8b0511ac455b2b1273a3d511ef6ea14c597f.jar" />
     </item>
     <item
-        jar="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jar="C:\Users\Alan\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
-        <dex dex="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.0_6e243c7c7b2cc2f2cab89dafd0fb117a88b0b5dc.jar" />
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\pre-dexed\debug\support-annotations-23.3.0_a1266c9830bf363d7551818cbae90f29081da28c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\pre-dexed\debug\internal_impl-23.3.0_afacd86e34f9c0fc286861ae978715e76e5150fd.jar" />
+    </item>
+    <item
+        jar="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\exploded-aar\com.android.support\design\23.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.3.0_d1f9573f0824cafd4f7a62632f4556e453f9adc2.jar" />
+    </item>
+    <item
+        jar="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.3.0_61bca982570faa49568b067704fd37a42ff112a1.jar" />
+    </item>
+    <item
+        jar="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="C:\Users\Alan\Documents\GitHub\MyApplication\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.3.0_0a93461fa9fc43158ac8796587bec00b4f48b742.jar" />
     </item>
 
 </items>
