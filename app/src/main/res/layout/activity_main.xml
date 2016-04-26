@@ -11,7 +11,7 @@
 
 
     <AutoCompleteTextView
-        android:id="@+id/Months"
+        android:id="@+id/txtMunicipio"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:text="Pesquisar"
         android:id="@+id/btnPesquisa"
-        android:layout_below="@+id/Months"
+        android:layout_below="@+id/txtMunicipio"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

@@ -1,17 +1,16 @@
 package com.example.todeolho.myapplication;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-
-import com.example.todeolho.myapplication.classes.Convenio;
-
+import android.widget.TextView;
+import com.example.todeolho.myapplication.classes.Proponente;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -27,32 +26,50 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class ProponenteActivity extends ActionBarActivity {
-    ArrayList<String> convenioList = new ArrayList<String>();
+    ArrayList<String> proponenteLista = new ArrayList<String>();
+    ArrayList<Proponente> proponenteListaObjeto = new ArrayList<Proponente>();
+
+    private String municipio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_proponente);
 
-        Button getData = (Button) findViewById(R.id.getservicedata);
-        getData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText userinput = (EditText) findViewById((R.id.userinput));
-                String restURL = "http://api.convenios.gov.br/siconv/v1/consulta/convenios.json?" +"uf=" + userinput.getText();
-                new RestOperation().execute(restURL);
-            }
-        });
+        Bundle bundle = this.getIntent().getExtras();
+        String idMunicipio = bundle.getString("idMunicipio").trim();
+        municipio = bundle.getString("nomeMunicipio").trim();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,convenioList);
+
+        TextView txtPesquisa = (TextView) findViewById(R.id.txtMunicipio);
+
+        String restURL = "http://api.convenios.gov.br/siconv/v1/consulta/proponentes.json?id_municipio=" + idMunicipio;
+        new RestOperation().execute(restURL);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,proponenteLista);
 
         ListView lv= (ListView) findViewById(R.id.list);
         lv.setAdapter(adapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> adapter, View view,
+                                    int posicao, long id) {
+                Intent secondActivity = new Intent(ProponenteActivity.this, ProponenteDetalhadoActivity.class);
+
+                secondActivity.putExtra("proponente", proponenteListaObjeto.get(posicao));
+
+                startActivity(secondActivity);
+
+            }
+        });
+
     }
+
 
     public class RestOperation extends AsyncTask<String ,Void, Void> {
 
@@ -138,15 +155,26 @@ public class ProponenteActivity extends ActionBarActivity {
                 try {
                     jsonResponse = new JSONObject(content);
 
-                    JSONArray jsonArray = jsonResponse.optJSONArray("convenios");
+                    JSONArray jsonArray = jsonResponse.optJSONArray("proponentes");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject child = jsonArray.getJSONObject(i);
 
-                        Convenio convenio =  new Convenio();
-                        convenio.setModalidade(child.getString("modalidade"));
-                        convenioList.add(convenio.getModalidade());
+                        Proponente proponente =  new Proponente();
 
+                        proponente.setId(child.getString("id"));
+                        proponente.setCnpj(child.getString("cnpj"));
+                        proponente.setNome(child.getString("nome"));
+                        proponente.setMunicipio(municipio);
+                        proponente.setEndereco(child.getString("endereco"));
+                        proponente.setCep(child.getString("cep"));
+                        proponente.setNomeresponsavel(child.getString("nome_responsavel"));
+                        proponente.setCpfresponsavel(child.getString("cpf_responsavel"));
+                        proponente.setTelefone(child.getString("telefone"));
+                        proponente.setInscricaoestadual(child.getString("inscricao_estadual"));
+                        proponente.setInscricaomunicipal(child.getString("inscricao_municipal"));
+                        proponenteLista.add(proponente.getNome());
+                        proponenteListaObjeto.add(proponente);
 
                     }
 
@@ -163,5 +191,4 @@ public class ProponenteActivity extends ActionBarActivity {
 
         }
     }
-
 }
