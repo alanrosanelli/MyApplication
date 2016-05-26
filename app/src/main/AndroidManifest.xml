@@ -9,7 +9,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Tô de Olho"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Example">
+        android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".ProponenteActivity" />
         <activity android:name=".ProponenteDetalhadoActivity" />
-        <activity android:name=".ConvenioActivity"></activity>
+        <activity android:name=".ConvenioActivity" />
+        <activity android:name=".ConvenioDetalhadoActivity" />
     </application>
 
 </manifest>

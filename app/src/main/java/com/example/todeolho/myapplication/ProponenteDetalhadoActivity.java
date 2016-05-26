@@ -4,14 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.todeolho.myapplication.classes.Proponente;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 
 public class ProponenteDetalhadoActivity extends Activity  {
 
@@ -22,7 +18,7 @@ public class ProponenteDetalhadoActivity extends Activity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_proponente_detalhado);
 
-        TextView txtCnpj = (TextView) findViewById(R.id.txtCnpj);
+        TextView txtCnpj = (TextView) findViewById(R.id.txtModalidade);
         TextView txtNome = (TextView) findViewById(R.id.txtNome);
         TextView txtMunicipio = (TextView) findViewById(R.id.txtMunicipio);
         TextView txtEndereco = (TextView) findViewById(R.id.txtEndereco);

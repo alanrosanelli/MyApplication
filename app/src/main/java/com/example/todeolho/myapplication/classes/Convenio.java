@@ -1,13 +1,14 @@
 package com.example.todeolho.myapplication.classes;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Alan on 09/04/2016.
  */
-public class Convenio {
+public class Convenio implements Serializable {
 
-    private long id;
+    private String id;
     private String modalidade;
     private String orgao_concedente;
     private String justificativa_resumida;
@@ -22,11 +23,12 @@ public class Convenio {
     private String situacao;
     private String proponente;
 
-    public long getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
