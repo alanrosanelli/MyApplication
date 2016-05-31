@@ -2,7 +2,7 @@
     <string name="app_name">My Application</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="action_settings">Settings</string>
-
+    <string name="facebook_app_id">875797985875455</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
