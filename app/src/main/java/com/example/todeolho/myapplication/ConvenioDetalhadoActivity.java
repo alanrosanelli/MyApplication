@@ -1,11 +1,15 @@
 package com.example.todeolho.myapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.todeolho.myapplication.classes.Convenio;
 import com.example.todeolho.myapplication.classes.Proponente;
+import com.facebook.AccessToken;
 
 public class ConvenioDetalhadoActivity extends Activity {
 
@@ -46,5 +50,27 @@ public class ConvenioDetalhadoActivity extends Activity {
             txtSituacao.setText(convenio.getSituacao());
         }
 
+        Button btnDenuncia = (Button) findViewById(R.id.btnDenuncia);
+        btnDenuncia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Bundle bundle = new Bundle();
+                bundle.putString("id_convenio", convenio.getId());
+
+
+                Intent secondActivity = new Intent(ConvenioDetalhadoActivity.this, DenunciaConvenioActivity.class);
+                startActivity(secondActivity.putExtras(bundle));
+
+//                if(AccessToken.getCurrentAccessToken() != null) {
+//                    Intent intent = new Intent(ConvenioDetalhadoActivity.this, HomeActivity.class);
+//                    startActivity(intent);
+//                }
+//                else{
+//                    Intent secondActivity = new Intent(ConvenioDetalhadoActivity.this, DenunciaConvenioActivity.class);
+//                    startActivity(secondActivity.putExtras(bundle));
+//                }
+            }
+        });
     }
 }
