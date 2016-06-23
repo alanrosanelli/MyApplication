@@ -16,40 +16,44 @@
         android:layout_gravity="center_horizontal"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imagePerfil"
 
-        android:layout_below="@+id/login_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignTop="@+id/txtNome"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtNome"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/login_button"
+        android:layout_marginTop="24dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/lblDenuncia"
+        android:layout_alignEnd="@+id/lblDenuncia" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Titulo"
         android:id="@+id/lblTitulo"
-        android:layout_below="@+id/imagePerfil"
+        android:layout_above="@+id/txtTitulo"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="38dp" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtTitulo"
-        android:layout_below="@+id/lblTitulo"
+        android:layout_above="@+id/lblDenuncia"
         android:layout_alignRight="@+id/login_button"
         android:layout_alignEnd="@+id/login_button"
         android:layout_alignParentLeft="true"
@@ -61,9 +65,10 @@
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/txtDenuncia"
-        android:layout_below="@+id/lblDenuncia"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_marginBottom="170dp"
         android:layout_alignRight="@+id/txtTitulo"
         android:layout_alignEnd="@+id/txtTitulo" />
 
@@ -72,7 +77,7 @@
         android:layout_height="wrap_content"
         android:text="Descrição Denúncia"
         android:id="@+id/lblDenuncia"
-        android:layout_below="@+id/txtTitulo"
+        android:layout_above="@+id/txtDenuncia"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -81,9 +86,10 @@
         android:layout_height="wrap_content"
         android:text="Salvar"
         android:id="@+id/btnSalvaDenuncia"
-        android:layout_below="@+id/txtDenuncia"
+        android:layout_below="@+id/lblDenuncia"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="37dp" />
 
 
 </RelativeLayout>

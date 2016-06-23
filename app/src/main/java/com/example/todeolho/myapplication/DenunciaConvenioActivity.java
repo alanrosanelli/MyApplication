@@ -1,6 +1,7 @@
 package com.example.todeolho.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.todeolho.myapplication.classes.Pessoa;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -42,6 +44,11 @@ public class DenunciaConvenioActivity extends AppCompatActivity implements View.
     CallbackManager callbackManager;
     Pessoa pessoa;
 
+    private TextView txtTitulo;
+    private TextView txtDenuncia;
+    private ImageView imageFacebook;
+    private TextView txtNome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,15 +56,41 @@ public class DenunciaConvenioActivity extends AppCompatActivity implements View.
         facebookSDKInitialize();
         setContentView(R.layout.activity_denuncia_convenio);
 
+        txtTitulo = (TextView) findViewById(R.id.txtTitulo);
+        txtDenuncia = (TextView) findViewById(R.id.txtDenuncia);
+        imageFacebook = (ImageView) findViewById(R.id.imagePerfil);
+        txtNome = (TextView) findViewById(R.id.txtNome);
+
+
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email","user_about_me");
         getLoginDetails(loginButton);
 
         Bundle bundle = this.getIntent().getExtras();
-
         String idConvenio = bundle.getString("id_convenio").trim();
-
         Button btnSalvaDenuncia = (Button) findViewById(R.id.btnSalvaDenuncia);
+
+
+        txtTitulo.setEnabled(false);
+        txtDenuncia.setEnabled(false);
+
+        if(AccessToken.getCurrentAccessToken() != null)
+        {
+            SetCamposEnabled(txtTitulo,txtDenuncia);
+            SharedPreferences settings = getSharedPreferences("Usuario", 0);
+            txtNome.setText(settings.getString("UsuarioNome", ""));
+            String foto = settings.getString("FotoUsuario", "");
+
+            Glide.with(getBaseContext())
+                    .load(foto)
+                    .centerCrop()
+                    .fitCenter()
+                    .override(300, 100).into(imageFacebook); // id do teu imageView.
+        }
+        else if ( AccessToken.getCurrentAccessToken() == null){
+            Toast toast = Toast.makeText(getApplicationContext(),"Para postar é ncessario estar logado",Toast.LENGTH_LONG);
+            toast.show();
+        }
 
         btnSalvaDenuncia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +99,13 @@ public class DenunciaConvenioActivity extends AppCompatActivity implements View.
             }
         });
 
+
+    }
+
+    private void SetCamposEnabled(TextView txtTitulo,TextView txtDenuncia)
+    {
+        txtTitulo.setEnabled(true);
+        txtDenuncia.setEnabled(true);
     }
 
     private class HttpAsyncPOST extends AsyncTask<String, Void, String> {
@@ -80,14 +120,10 @@ public class DenunciaConvenioActivity extends AppCompatActivity implements View.
             //editTextNome.setText("");
             imprimirMensagem(result);
         }
-
     }
 
     private String post() {
         String mensagem = "";
-
-        TextView txtTitulo = (TextView) findViewById(R.id.txtNome);
-        TextView txtDenuncia = (TextView) findViewById(R.id.txtDenuncia);
 
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost post = new HttpPost(URL);
@@ -143,49 +179,62 @@ public class DenunciaConvenioActivity extends AppCompatActivity implements View.
 
         // Callback registration
         login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+
             @Override
             public void onSuccess(LoginResult login_result) {
 //                Intent intent = new Intent(DenunciaConvenioActivity.this,DenunciaConvenioActivity.class);
 //                startActivity(intent);
-
-                final ImageView imageFacebook = (ImageView) findViewById(R.id.imagePerfil);
-                final TextView txtNome = (TextView) findViewById(R.id.txtNome);
+//
 
 
-                GraphRequest request = GraphRequest.newMeRequest(
-                        login_result.getAccessToken(),
-                        new GraphRequest.GraphJSONObjectCallback() {
-                            @Override
-                            public void onCompleted(
-                                    JSONObject object,
-                                    GraphResponse response) {
-                                Log.v("TAG", "JSON: " + object);
-                                try {
-                                    //String foto = object.getJSONObject("picture").getJSONObject("data").getString("url");
-                                    String id = object.getString("id");
-                                    String foto = "https://graph.facebook.com/"+id+"/picture?height=120&width=120";
-                                    String nome = object.getString("name");
-                                    String email = object.getString("email");
-                                    Glide.with(getBaseContext())
-                                    .load(foto)
-                                            .centerCrop()
-                                            .fitCenter()
-                                            .override(300, 100)
-                                            .into(imageFacebook); // id do teu imageView.
-                                    txtNome.setText(nome);
+                try {
+                    GraphRequest request = GraphRequest.newMeRequest(
+                            login_result.getAccessToken(),
+                            new GraphRequest.GraphJSONObjectCallback() {
+                                @Override
+                                public void onCompleted(
+                                        JSONObject object,
+                                        GraphResponse response) {
+                                    Log.v("TAG", "JSON: " + object);
+                                    try {
+                                        //String foto = object.getJSONObject("picture").getJSONObject("data").getString("url");
+                                        String id = object.getString("id");
+                                        String foto = "https://graph.facebook.com/" + id + "/picture?height=120&width=120";
+                                        String nome = object.getString("name");
+                                        String email = object.getString("email");
+                                        Glide.with(getBaseContext())
+                                                .load(foto)
+                                                .centerCrop()
+                                                .fitCenter()
+                                                .override(300, 100).into(imageFacebook); // id do teu imageView.
+                                        txtNome.setText(nome);
 
-                                    pessoa.setNome(nome);
-                                    pessoa.setEmail(email);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                        SharedPreferences settings = getSharedPreferences("Usuario", 0);
+                                        SharedPreferences.Editor editor = settings.edit();
+                                        editor.putString("UsuarioNome", txtNome.getText().toString());
+                                        editor.putString("FotoUsuario", foto);
+
+                                        //Confirma a gravação dos dados
+                                        editor.commit();
+
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
-                            }
-                        });
-                Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,email,picture.width(120).height(120)");
-                request.setParameters(parameters);
-                request.executeAsync();
+                            });
+                    Bundle parameters = new Bundle();
+                    parameters.putString("fields", "id,name,email,picture.width(120).height(120)");
+                    request.setParameters(parameters);
+                    request.executeAsync();
+                    SetCamposEnabled(txtTitulo,txtDenuncia);
+                }
+                catch (Exception ex) {
 
+                    Toast toast = Toast.makeText(getApplicationContext(),ex.getMessage(),Toast.LENGTH_LONG);
+                  toast.show();
+
+                }
             }
 
             @Override
@@ -195,11 +244,11 @@ public class DenunciaConvenioActivity extends AppCompatActivity implements View.
 
             @Override
             public void onError(FacebookException exception) {
-                //  code to handle error
+                Toast toast = Toast.makeText(getApplicationContext(),exception.getMessage(),Toast.LENGTH_LONG);
+                toast.show();
             }
         });
     }
-
 
     @Override
     public void onClick(View v) {
